@@ -1,0 +1,167 @@
+\documentclass[algorithmlist, figurelist,tablelist, nomlist,engineering]{seuthesix}
+\let\cleardoublepage\clearpage % 去除空白页
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}  
+\renewcommand{\algorithmicensure}{\textbf{输出:}}  
+
+\begin{document}
+\categorynumber{000} % 分类采用《中国图书资料分类法》
+\UDC{000}            %《国际十进分类法UDC》的类号
+\secretlevel{公开}    %学位论文密级分为"公开"、"内部"、"秘密"和"机密"四种
+\studentid{191771}   %学号要完整，前面的零不能省略。
+\title{意图驱动的网络服务模型适配和转译方法研究}{}{Research on Intent-Driven Network Service Model Adaptation and Translation Method}{}
+\author{张强}{Qiang Zhang}
+\advisor{董永强}{副教授}{Yongqiang Dong}{Associate Professor}
+\degreetype{工学硕士}{Master of engineering} % 详细学位名称
+\major{计算机技术}
+\submajor{网络智能化}
+\defenddate{\today}
+\authorizedate{\today}
+\committeechair{}
+\reviewer{}{}
+\department{东南大学计算机科学与工程学院}{School of Computer science and engineering}
+\seuthesisthanks{本课题的研究获xx资助}
+\makebigcover
+\makecover
+\begin{abstract}{意图}
+
+\end{abstract}
+
+\begin{englishabstract}{Intent}
+	
+\end{englishabstract}
+
+\setnomname{术语与符号约定}
+\tableofcontents
+\listofothers
+
+\mainmatter
+
+\chapter{绪论}
+本章首先介绍了本文工作的研究背景和意义，指出当前网络发展趋势不断朝着自动化和智能化的方向演进，以及基于意图的网络对于当前网络架构的重要意义，进而体现了研究意图驱动的网络服务的重要性和意义所在；接着对本文的研究目标和研究内容进行了阐述；最后概要地列出了本文组织结构。\par
+\section{研究背景与意义}
+
+\section{研究目标与内容}
+\subsection{研究目标}
+
+\subsection{研究内容}
+
+\section{全文组织结构}
+
+
+
+\chapter{研究现状}
+
+\section{基于意图的网络概述}
+\section{L3VPN概述}
+\section{网络服务架构研究现状}
+\section{研究现状总结}
+\section{本章小结}
+本章介绍了相关工作。为后续章节的内容打下了基础。
+
+\chapter{用户意图的适配}
+\section{意图的表现和定义方法的研究}
+\section{意图YANG模型到服务YANG的映射}
+\section{服务YANG模型到网络YANG模型的适配}
+\section{本章小结}
+
+\chapter{异构NETCONF/YANG消息的转译}
+
+\section{CTC算法}
+
+\subsection{NETCONF和YANG消息的解析方法}
+
+\begin{algorithm}[h]
+	\caption{NETCONF报文解析}  
+	\begin{algorithmic}[1] %每行显示行号  
+		\REQUIRE $XML_{input}$
+		\ENSURE 操作列表$op\_list $
+		\STATE $op\_list$ <-- [\quad]
+		\STATE op <-- null
+		\FOR{node \textbf{in} $XML_{input}$}
+		\IF{node \textbf{has} operation}
+		\IF{op == null}
+		\STATE op <-- operation
+		\STATE path <-- $PATH{root\_to\_node}$
+		\ELSE
+		\STATE $next\_op$ <-- operation
+		\STATE data <-- ${DATA{op\_to\_next\_op}}$
+		\STATE $op\_list{\cdot}{push\_back}\{op,path,data\}$
+		\STATE op <-- $next\_op$
+		\STATE path <-- $PATH{root\_to\_node}$
+		\ENDIF
+		\ENDIF
+		\ENDFOR
+		\STATE\RETURN{$op\_list$}
+	\end{algorithmic}  
+\end{algorithm} 
+
+
+\subsection{NETCONF消息操作处理的方案-模拟计算}
+
+
+\subsection{控制器配置翻译}
+
+
+\subsection{基于设备端当前配置的比较}
+
+\section{Mediator转换框架的设计和实现}
+
+\subsection{重要组件的分析实现}
+
+\section{本章小结}
+
+\chapter{总结与展望}
+本章对全文工作进行了回顾和总结。
+\section{全文工作总结}
+\section{未来工作展望}
+
+\acknowledgement
+感谢每一个给予帮助的人。
+
+\bibliographystyle{unsrt}
+\bibliography{seuthesix}
+
+
+
+\appendix
+
+\chapter{欧几里得第二定理的证明}
+\newtheorem{theorem}{定理}
+\begin{theorem}
+欧几里得第二定理(素数有无穷多个)\\
+证明：用反证法。假设素数有有限个($N$个)，记为$p_1,p_2,\dots,p_N$。则我们构造一个新的数，
+\[
+n=p_1p_2\dots p_N+1.
+\]
+由于$p_i,i=1,2,\dots,N$为素数，则一定不为$1$。于是对于任意的$p_i,i=1,2,\dots, N$，有
+\[
+p_i\not|n
+\]
+这表明，要么$n$本身为素数，要么$n$为合数，但是存在$p_1,p_2,\dots,p_N$之外的其他素数能够将$n$进行素因子分解。
+不管哪种情况，都表明存在更多的素数。定理得证。\qed
+\end{theorem}
+
+\chapter{$\sqrt{2}$是无理数的证明}
+\begin{theorem}
+$\sqrt{2}$是无理数。\\
+证明：用反证法。假设$\sqrt{2}$是有理数，则可表示为两个整数的商，即$\exists p,q, q\ne0$
+\[
+\sqrt{2}=\frac{p}{q}
+\]
+不失一般性，我们假设$p,q$是既约的，即$\gcd(p,q)=1$。对上式两边平方可得\\
+\begin{align*}
+2& =\frac{p^2}{q^2}\\
+p^2&=2q^2.
+\end{align*}
+表明$p^2$为偶数，因此$p$为偶数，记$p=2m$。则
+\begin{align*}
+p^2&=4m^2=2q^2\\
+q^2&=2m^2.
+\end{align*}
+表明$q$也为偶数，因此它们有公共因子$2$。这与它们既约的假设矛盾。定理得证。\qed
+\end{theorem}
+
+\resume{作者攻读硕士学位期间的研究成果}
+
+
+\end{document}
